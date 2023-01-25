@@ -3,9 +3,33 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+const likeIcone = document.querySelectorAll('.like-glyph')
 
+function likeFunction(e){
+  const like = e.target
+  mimicServerCall()
+  .then( (response) => {
+    alert(response)
+    like.innerText = FULL_HEART
+    let active = document.querySelector('span')
+    active.classList.add('.activated-heart')
+  })
+  like.addEventListener('click', () =>{
+    like.innerText = EMPTY_HEART
+    active.classList.remove('.activated-heart')
+  })
+  .catch( (error) => {
+    const div =  document.querySelector('div');
+    div.classList.remove('hidden');
+    alert(error)
+    setTimeout( div.className = "hidden" ,3000)
+  })
 
+}
 
+for (let icon of likeIcone) {
+  icon.addEventListener("click", likeFunction);
+}
 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
