@@ -1,7 +1,10 @@
 // Defining text characters for the empty and full hearts for you to use later.
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
-
+const heartColot = {
+  "♡": FULL_HEART,
+  "♥": EMPTY_HEART,
+};
 // Your JavaScript code goes here!
 const likeIcone = document.querySelectorAll('.like-glyph')
 
@@ -10,14 +13,14 @@ function likeFunction(e){
   mimicServerCall()
   .then( (response) => {
     alert(response)
-    like.innerText = FULL_HEART
+    like.innerText = heartColot[like.innerText]
     let active = document.querySelector('span')
     active.classList.add('.activated-heart')
   })
-  like.addEventListener('click', () =>{
-    like.innerText = EMPTY_HEART
-    active.classList.remove('.activated-heart')
-  })
+  // like.addEventListener('click', () =>{
+  //   like.innerText = EMPTY_HEART
+  //   active.classList.remove('.activated-heart')
+  // })
   .catch( (error) => {
     const div =  document.querySelector('div');
     div.classList.remove('hidden');
